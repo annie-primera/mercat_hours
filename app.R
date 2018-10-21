@@ -14,6 +14,7 @@ D_DB = 2.25
 E_GG = 2.5
 G_U = 1.75
 M_U = 1.75
+H_H = 1.5
 
 
 
@@ -31,6 +32,7 @@ ui <- fluidPage(
          numericInput("EGG", h3("EGG"), value = 0),
          numericInput("GU", h3("GU"), value = 0),
          numericInput("MU", h3("MU"), value = 0),
+        numericInput("HH", h3("HH"), value = 0),
         p("For private bookings, input the number of hours (e.g. 1.5 hours), including the extra .5 hours paid for the beginning and end of tours"),
          numericInput("PB", h3("PB"), value = 0)
       ),
@@ -46,7 +48,7 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   
-  total_hours = reactive({(input$DDB * D_DB) + (input$EGG * E_GG) + (input$GU * G_U) + (input$MU * M_U) + input$PB})
+  total_hours = reactive({(input$DDB * D_DB) + (input$EGG * E_GG) + (input$GU * G_U) + (input$MU * M_U) + (input$HH * H_H) + input$PB})
   
   output$total_hours <- renderPrint({ paste("You are working",total_hours(),"hours") })
    
